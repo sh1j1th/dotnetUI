@@ -1,0 +1,50 @@
+<mat-card class="register-card">
+    <mat-card-title>
+        REGISTER
+    </mat-card-title>
+
+    <mat-card-content>
+        <form #regForm="ngForm" (ngSubmit)="register(regForm.value)" class="form">
+            <mat-form-field>
+                <mat-select placeholder="I'm a" [(ngModel)]="role" name="role" required>
+                    <mat-option value="mentor">Mentor</mat-option>
+                    <mat-option value="student">Student</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>First Name</mat-label>
+                <input matInput placeholder="First name" [(ngModel)]="firstName" name="firstName" required>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Last Name</mat-label>
+                <input matInput placeholder="Last Name" [(ngModel)]="lastName" name="lastName" required>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Date of Birth</mat-label>
+                <input matInput name="dateOfBirth" [matDatepicker]="picker" [(ngModel)]="dateOfBirth"
+                    placeholder="Date of Birth" required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Email" [(ngModel)]="email" name="email" required>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Phone</mat-label>
+                <mat-hint>Maximum 10 digits</mat-hint>
+                <input matInput placeholder="Phone Number" [(ngModel)]="phone" name="phone" required>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Password</mat-label>
+                <mat-hint>Minimum 6 characters</mat-hint>
+                <input matInput placeholder="Password" [(ngModel)]="password" name="password" required>
+            </mat-form-field>
+
+            <mat-card-actions>
+                <button mat-raised-button type="submit" color="primary">REGISTER</button>
+            </mat-card-actions>
+        </form>
+    </mat-card-content>
+
+</mat-card>
