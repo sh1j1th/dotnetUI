@@ -1,0 +1,12 @@
+<div class="dialog">
+    <button mat-raised-button (click)="showDialog()" color="primary">Create Technology</button>
+    <router-outlet></router-outlet>
+</div>
+<div>
+    <table mat-table [dataSource]="technologyList">
+            <ng-container matColumnDef="position">
+                    <th mat-header-row *matHeaderRowDef> No. </th>
+                    <td mat-row *matRowDef="let element"> {{element.id}} </td>
+                  </ng-container>
+    </table>
+</div>
