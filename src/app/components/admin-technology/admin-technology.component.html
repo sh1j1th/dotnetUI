@@ -1,4 +1,17 @@
-<div class="dialog">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="dialog">
     <button mat-raised-button (click)="showDialog()" color="primary">Create Technology</button>
     <router-outlet></router-outlet>
 </div>
@@ -9,4 +22,39 @@
                     <td mat-row *matRowDef="let element"> {{element.id}} </td>
                   </ng-container>
     </table>
-</div>
+</div>  -->
+
+<!-- https://stackoverflow.com/questions/49868019/angular-material-table-dynamic-columns-without-model
+
+<table mat-table [dataSource]="technologyList">
+    <ng-container matColumnDef *ngFor="let head of headElements">
+        <thead>
+            <th mat-header-row *matHeaderRowDef> {{head}} </th>
+        </thead>
+        <tbody mat-row *matRowDef="let el of elements">
+            <tr mat-row *matRowDef="let el of elements">
+                <th scope="row">{{el.id}}</th>
+                <td>{{el.first}}</td>
+                <td>{{el.last}}</td>
+                <td>{{el.handle}}</td>
+            </tr>
+        </tbody>
+
+    </ng-container>
+</table>
+
+<table mat-table hover="true">
+    <thead>
+        <tr>
+            <th mat-header-row *ngFor="let head of headElements" scope="col">{{head}} </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr mat-row *ngFor="let el of elements">
+            <th scope="row">{{el.id}}</th>
+            <td>{{el.first}}</td>
+            <td>{{el.last}}</td>
+            <td>{{el.handle}}</td>
+        </tr>
+    </tbody>
+</table> -->

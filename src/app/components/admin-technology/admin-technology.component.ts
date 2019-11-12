@@ -10,7 +10,29 @@ import { DataSource } from '@angular/cdk/table';
   styleUrls: ['./admin-technology.component.scss']
 })
 export class AdminTechnologyComponent implements OnInit {
-  columnsToDisplay = ['Id'];
+  //try to add keys here, if not give col fields explicitly:(
+  //GET SOMETHING FROM SERVICE 
+  this.listi = this.listeciServis.listecidenKisi;
+  this.listecidenVazife = this.listeciServis.listecidenVazife;
+  
+  //FILL TABLE DATASOURCE 
+  var obj = {};
+  for (let i in this.listecidenKisi ){
+      for( let v of this.listd[i].vazifeSonuclar){
+          obj[v.name] = v.value;
+      }
+      this.vzfPuanTablo.push(obj);
+      obj={};
+  }
+  
+  //CREATE DISPLAYED COLUMNS DYNAMICALLY
+  this.displayedColumns = [];
+  for( let v in this.vzfPuanTablo[0]){
+      this.displayedColumns.push(v);
+  }
+  
+  //INITIALIZE MatTableDataSource
+  this.dataSource = new MatTableDataSource(this.vzfPuanTablo);
 
 
   constructor(
