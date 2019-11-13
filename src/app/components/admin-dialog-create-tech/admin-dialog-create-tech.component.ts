@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AdminTechnologyComponent } from '../admin-technology/admin-technology.component';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-admin-dialog-create-tech',
@@ -9,8 +11,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class AdminDialogCreateTechComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<AdminDialogCreateTechComponent>,
-    private http: HttpClient
+  constructor(
+    public dialogRef: MatDialogRef<AdminDialogCreateTechComponent>,
+    private http: HttpClient,
+    private _router: Router,
+    private activeRoute: ActivatedRoute
     ) { }
   
     ngOnInit() { }
@@ -26,6 +31,9 @@ export class AdminDialogCreateTechComponent implements OnInit {
         (result) => {
           console.log(result)
           console.log("ADDED COURSE successfully")
+          alert("Added technology successfully");
+          this.dialogRef.close();
+          window.location.reload();
         },
         (error) => {
           console.log(error)

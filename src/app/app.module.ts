@@ -41,10 +41,10 @@ const  appRoutes: Routes = [
   {path:'studentDashboard', component:StudentDashboardComponent},
   {path:'adminDashboard', component:AdminDashboardComponent,
 children:[
-  {path:'technologyCRUD', component:AdminTechnologyComponent,
-    children:[
+  {path:'technologyCRUD', component:AdminTechnologyComponent},
+    
       {path:'createTech', component:AdminDialogCreateTechComponent}
-    ]},
+    ,
   {path:'studentOps', component:AdminStudentComponent},
   {path:'mentorOps', component:AdminMentorComponent}
   
