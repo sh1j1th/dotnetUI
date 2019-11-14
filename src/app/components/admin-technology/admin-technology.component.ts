@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material';
 import { AdminDialogCreateTechComponent } from '../admin-dialog-create-tech/admin-dialog-create-tech.component';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { MatTableDataSource } from '@angular/material';
 import { DataSource } from '@angular/cdk/table';
+import { EditTechDialogComponent } from '../edit-tech-dialog/edit-tech-dialog.component';
+
 
 
 
 @Component({
   selector: 'app-admin-technology',
   templateUrl: './admin-technology.component.html',
-  styleUrls:['./admin-technology.component.scss']
+  styleUrls: ['./admin-technology.component.scss']
 })
 export class AdminTechnologyComponent implements OnInit {
   //try to add keys here, if not give col fields explicitly:(
@@ -37,8 +39,6 @@ export class AdminTechnologyComponent implements OnInit {
 
   displayedColumns = [];
   dataSource;
-
-
   listTechnology = function () {
     this.http.get("https://localhost:44370/api/admin").subscribe(
       (result: any[]) => {
@@ -57,4 +57,19 @@ export class AdminTechnologyComponent implements OnInit {
       }
     )
   }
+  openDialog(id: number): void {
+    alert(id);
+    const dialogRef = this.dialog.open(EditTechDialogComponent, {
+      width: 'auto',
+      data: { dialogId: id }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+    });
+
+    const dialogSubmitSubscription =
+      dialogRef.componentInstance.submitClicked.subscribe(result => {
+        dialogSubmitSubscription.unsubscribe();
+      });
+  }
 }
+

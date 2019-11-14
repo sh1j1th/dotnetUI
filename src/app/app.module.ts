@@ -31,6 +31,7 @@ import { AdminTechnologyComponent } from './components/admin-technology/admin-te
 import { AdminStudentComponent } from './components/admin-student/admin-student.component';
 import { AdminMentorComponent } from './components/admin-mentor/admin-mentor.component';
 import { AdminDialogCreateTechComponent } from './components/admin-dialog-create-tech/admin-dialog-create-tech.component';
+import { EditTechDialogComponent } from './components/edit-tech-dialog/edit-tech-dialog.component';
 
   
 
@@ -63,7 +64,8 @@ children:[
     AdminTechnologyComponent,
     AdminStudentComponent,
     AdminMentorComponent,
-    AdminDialogCreateTechComponent
+    AdminDialogCreateTechComponent,
+    EditTechDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -92,6 +94,7 @@ children:[
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [EditTechDialogComponent]
 })
 export class AppModule { }
