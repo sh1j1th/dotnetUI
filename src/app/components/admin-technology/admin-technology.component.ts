@@ -3,7 +3,6 @@ import { MatDialog } from '@angular/material';
 import { AdminDialogCreateTechComponent } from '../admin-dialog-create-tech/admin-dialog-create-tech.component';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { MatTableDataSource } from '@angular/material';
-import { DataSource } from '@angular/cdk/table';
 import { EditTechDialogComponent } from '../edit-tech-dialog/edit-tech-dialog.component';
 
 
@@ -57,11 +56,20 @@ export class AdminTechnologyComponent implements OnInit {
       }
     )
   }
-  openDialog(id: number): void {
+  openDialog(id: number, technologyName: string,
+     status: string, description: string,
+     commission: string, imageURL: string): void {
     alert(id);
+    alert(technologyName);
+    alert(status);
+    alert(description);
+    alert(commission);
+    alert(imageURL);
     const dialogRef = this.dialog.open(EditTechDialogComponent, {
       width: 'auto',
-      data: { dialogId: id }
+      data: { id: id, technologyName: technologyName,
+        status: status, description: description,
+        commission: commission, imageURL: imageURL}
     });
     dialogRef.afterClosed().subscribe(result => {
     });
