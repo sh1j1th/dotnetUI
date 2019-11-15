@@ -22,7 +22,7 @@ export class AdminStudentComponent implements OnInit {
   displayedColumns = [];
   dataSource;
   listStudents = function () {
-    this.http.get("https://localhost:44370/api/admin/users/2").subscribe(
+    this.http.get("https://localhost:44370/api/admin/users/1").subscribe(
       (result: any[]) => {
         this.studentList = result;
         //console.log(JSON.stringify(this.studentList));

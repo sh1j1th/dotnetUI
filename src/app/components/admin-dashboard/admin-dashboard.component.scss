@@ -11,4 +11,10 @@
   }
   .mat-button:hover{
       font-size: 15px;
+      color:black;
+  }
+  .mat-button:focus{
+    font-size: 15px;
+    color:black;
+    background: #eee;
   }
