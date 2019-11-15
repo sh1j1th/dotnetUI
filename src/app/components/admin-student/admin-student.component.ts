@@ -25,7 +25,8 @@ export class AdminStudentComponent implements OnInit {
     this.http.get("https://localhost:44370/api/admin/users/2").subscribe(
       (result: any[]) => {
         this.studentList = result;
-        this.displayedColumns = Object.keys(this.studentList[0]).concat(['Actions']);;
+        //console.log(JSON.stringify(this.studentList));
+        this.displayedColumns = Object.keys(this.studentList[1]).concat(['Actions']);;
         this.dataSource = new MatTableDataSource(this.studentList);
 
         console.log("studentList given below");
@@ -39,4 +40,19 @@ export class AdminStudentComponent implements OnInit {
       }
     )
   }
+
+  modifyAccess(id: string, isEnabled: string){
+    this.http.put("https://localhost:44370/api/admin/"+id, isEnabled).subscribe(
+      (result : any[]) => {
+        
+        console.log(result);
+        
+      },
+      (error) => {
+        alert("Error occured, check whether Backend is running!");
+        console.log(error)
+      }
+    )
+  }
+  
 }
