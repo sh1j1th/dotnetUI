@@ -1,6 +1,7 @@
-import { Component, Output, EventEmitter, Inject, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, Inject, OnInit, Type } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatTableDataSource } from '@angular/material';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-edit-tech-dialog',
@@ -18,7 +19,9 @@ export class EditTechDialogComponent implements OnInit {
   @Output() submitClicked = new EventEmitter<any>();
 
   constructor(
+    private _router: Router,
     private http: HttpClient,
+    private activeRoute: ActivatedRoute,
     public dialogRef: MatDialogRef<EditTechDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
@@ -30,20 +33,24 @@ export class EditTechDialogComponent implements OnInit {
     this.imageURL = this.data.imageURL;
     this.status = this.data.status;
     this.description = this.data.description;
-    
+
   }
-  editTech(editForm){
+  editTech(editForm) {
     console.log(editForm)
     editForm = JSON.stringify(editForm);
     console.log(editForm)
-    this.http.put("https://localhost:44370/api/admin/"+this.id, editForm).subscribe(
-      (result : any[]) => {
-        
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    this.http.put("https://localhost:44370/api/admin/" + this.id, editForm, { headers: headers, responseType: "text" }).subscribe(
+      (result) => {
+
         console.log(result);
-        
+        this.dialogRef.close();
+        this._router.navigateByUrl('adminDashboard', { skipLocationChange: true }).then(() => {
+          this._router.navigate(['adminDashboard/technologyCRUD']);
+        });
       },
       (error) => {
-        alert("Error occured, check whether Backend is running!");
+        alert("Error occured");
         console.log(error)
       }
     )

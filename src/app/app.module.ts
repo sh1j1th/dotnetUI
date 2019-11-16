@@ -6,11 +6,12 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Routes, RouterModule } from '@angular/router';
-import { MatButtonModule,
+import {
+  MatButtonModule,
   MatMenuModule,
   MatToolbarModule,
   MatIconModule,
-  MatCardModule, 
+  MatCardModule,
   MatSidenavModule,
   MatFormFieldModule,
   MatInputModule,
@@ -19,8 +20,9 @@ import { MatButtonModule,
   MatSelectModule,
   MatListModule,
   MatDialogModule,
-  MatTableModule} from '@angular/material';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+  MatTableModule
+} from '@angular/material';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -32,26 +34,6 @@ import { AdminStudentComponent } from './components/admin-student/admin-student.
 import { AdminMentorComponent } from './components/admin-mentor/admin-mentor.component';
 import { AdminDialogCreateTechComponent } from './components/admin-dialog-create-tech/admin-dialog-create-tech.component';
 import { EditTechDialogComponent } from './components/edit-tech-dialog/edit-tech-dialog.component';
-
-  
-
-const  appRoutes: Routes = [
- // {path:'', component:NavbarComponent},
-  {path:'register', component:RegisterComponent},
-  {path:'login', component:LoginComponent},
-  {path:'studentDashboard', component:StudentDashboardComponent},
-  {path:'adminDashboard', component:AdminDashboardComponent,
-children:[
-  {path:'technologyCRUD', component:AdminTechnologyComponent},
-    
-      {path:'createTech', component:AdminDialogCreateTechComponent}
-    ,
-  {path:'studentOps', component:AdminStudentComponent},
-  {path:'mentorOps', component:AdminMentorComponent}
-  
-]}
-  
-]
 
 @NgModule({
   declarations: [
@@ -89,9 +71,7 @@ children:[
     MatTableModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
-
-    RouterModule.forRoot(appRoutes)
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],

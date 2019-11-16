@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatTableDataSource } from '@angular/material';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-student',
@@ -9,7 +10,8 @@ import { MatTableDataSource } from '@angular/material';
 })
 export class AdminStudentComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private _router: Router) { }
 
   ngOnInit() {
     this.listStudents();
@@ -18,21 +20,22 @@ export class AdminStudentComponent implements OnInit {
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
   displayedColumns = [];
   dataSource;
   listStudents = function () {
     this.http.get("https://localhost:44370/api/admin/users/1").subscribe(
       (result: any[]) => {
         this.studentList = result;
+        console.log(result);
         //console.log(JSON.stringify(this.studentList));
-        this.displayedColumns = Object.keys(this.studentList[1]).concat(['Actions']);;
+        this.displayedColumns = Object.keys(this.studentList[0]).concat(['Actions']);;
         this.dataSource = new MatTableDataSource(this.studentList);
-
+        console.log(this.displayedColumns);
         console.log("studentList given below");
         console.log(this.studentList);
         console.log("dataSource given below");
         console.log(this.dataSource)
+        
       },
       (error) => {
         alert("Error occured, check whether Backend is running!");
@@ -41,12 +44,14 @@ export class AdminStudentComponent implements OnInit {
     )
   }
 
-  modifyAccess(id: string, isEnabled: string){
-    this.http.put("https://localhost:44370/api/admin/"+id, isEnabled).subscribe(
-      (result : any[]) => {
+  modifyAccess(id: string){
+    this.http.get("https://localhost:44370/api/admin/useraccess/"+id,{responseType: 'text'}).subscribe(
+      (result) => {
         
         console.log(result);
-        
+        this._router.navigateByUrl('adminDashboard', { skipLocationChange: true }).then(() => {
+          this._router.navigate(['adminDashboard/studentOps']);
+      });
       },
       (error) => {
         alert("Error occured, check whether Backend is running!");

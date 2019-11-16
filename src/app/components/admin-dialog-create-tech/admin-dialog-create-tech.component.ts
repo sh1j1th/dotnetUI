@@ -33,11 +33,9 @@ export class AdminDialogCreateTechComponent implements OnInit {
           console.log("ADDED COURSE successfully")
           alert("Added technology successfully");
           this.dialogRef.close();
-          
-          this._router.navigateByUrl('/AdminTechnologyComponent', { skipLocationChange: true }).then(() => {
-            this._router.navigate(['AdminDialogCreateTechComponent']);
-        }); 
-
+          this._router.navigateByUrl('adminDashboard', { skipLocationChange: true }).then(() => {
+            this._router.navigate(['adminDashboard/technologyCRUD']);
+        });
         },
         (error) => {
           console.log(error)

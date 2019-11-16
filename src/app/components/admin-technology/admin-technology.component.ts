@@ -59,12 +59,7 @@ export class AdminTechnologyComponent implements OnInit {
   openDialog(id: number, technologyName: string,
      status: string, description: string,
      commission: string, imageURL: string): void {
-    alert(id);
-    alert(technologyName);
-    alert(status);
-    alert(description);
-    alert(commission);
-    alert(imageURL);
+  
     const dialogRef = this.dialog.open(EditTechDialogComponent, {
       width: 'auto',
       data: { id: id, technologyName: technologyName,
