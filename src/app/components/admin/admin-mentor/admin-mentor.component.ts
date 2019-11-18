@@ -29,7 +29,7 @@ export class AdminMentorComponent implements OnInit {
       (result: any[]) => {
         this.mentorList = result;
         //console.log(JSON.stringify(this.mentorList));
-        this.displayedColumns = Object.keys(this.mentorList[1]).concat(['Actions']);;
+        this.displayedColumns = Object.keys(this.mentorList[0]).concat(['Actions']);;
         this.dataSource = new MatTableDataSource(this.mentorList);
 
         console.log("mentorList given below");

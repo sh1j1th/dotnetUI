@@ -27,13 +27,16 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { StudentDashboardComponent } from './components/student-dashboard/student-dashboard.component';
-import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
-import { AdminTechnologyComponent } from './components/admin-technology/admin-technology.component';
-import { AdminStudentComponent } from './components/admin-student/admin-student.component';
-import { AdminMentorComponent } from './components/admin-mentor/admin-mentor.component';
-import { AdminDialogCreateTechComponent } from './components/admin-dialog-create-tech/admin-dialog-create-tech.component';
-import { EditTechDialogComponent } from './components/edit-tech-dialog/edit-tech-dialog.component';
+import { StudentDashboardComponent } from './components/student/student-dashboard/student-dashboard.component';
+import { AdminDashboardComponent } from './components/admin/admin-dashboard/admin-dashboard.component';
+import { AdminTechnologyComponent } from './components/admin/admin-technology/admin-technology.component';
+import { AdminStudentComponent } from './components/admin/admin-student/admin-student.component';
+import { AdminMentorComponent } from './components/admin/admin-mentor/admin-mentor.component';
+import { AdminDialogCreateTechComponent } from './components/admin/admin-dialog-create-tech/admin-dialog-create-tech.component';
+import { EditTechDialogComponent } from './components/admin/edit-tech-dialog/edit-tech-dialog.component';
+import { MentorDashboardComponent } from './components/mentor/mentor-dashboard/mentor-dashboard.component';
+import { ListTechnologiesComponent } from './components/mentor/list-technologies/list-technologies.component';
+import { DialogCreateCourseComponent } from './components/mentor/dialog-create-course/dialog-create-course.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +50,10 @@ import { EditTechDialogComponent } from './components/edit-tech-dialog/edit-tech
     AdminStudentComponent,
     AdminMentorComponent,
     AdminDialogCreateTechComponent,
-    EditTechDialogComponent
+    EditTechDialogComponent,
+    MentorDashboardComponent,
+    ListTechnologiesComponent,
+    DialogCreateCourseComponent
   ],
   imports: [
     BrowserModule,

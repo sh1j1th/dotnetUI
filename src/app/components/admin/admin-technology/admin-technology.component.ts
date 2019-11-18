@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { AdminDialogCreateTechComponent } from '../admin-dialog-create-tech/admin-dialog-create-tech.component';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { MatTableDataSource } from '@angular/material';
 import { EditTechDialogComponent } from '../edit-tech-dialog/edit-tech-dialog.component';
+import { AdminDialogCreateTechComponent } from '../admin-dialog-create-tech/admin-dialog-create-tech.component';
 
 
 

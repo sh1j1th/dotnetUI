@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
+  email:string[];
+
   constructor(
     private http: HttpClient,
     private _router: Router
@@ -25,10 +27,11 @@ export class LoginComponent implements OnInit {
     let Headers = new HttpHeaders({ 'Content-Type': 'application/json' })
 
     this.http.post("https://localhost:44370/api/account/login", userLogin,
-      { headers: Headers, responseType: 'text' }).subscribe(
-        (result) => {
-          console.log(result)
-          localStorage.setItem('token', result);
+      { headers: Headers, responseType: 'json' }).subscribe(
+        (result: any[]) => {
+          
+          localStorage.setItem('token', result.toString());
+                   
         },
         (error) => {
           console.log(error)

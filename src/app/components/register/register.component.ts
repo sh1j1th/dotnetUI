@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
     private _router : Router
   ) { }
  
-  ngOnInit() {
+  ngOnInit() { 
   }
 
   //register 
@@ -34,6 +34,9 @@ export class RegisterComponent implements OnInit {
             console.log(result)
             // alert("Please login to continue")
             // this._router.navigate(['/login'])
+            this._router.navigateByUrl('login', { skipLocationChange: true }).then(() => {
+              this._router.navigate(['login']);
+            });
           },
           (error) => {
             console.log(error)
