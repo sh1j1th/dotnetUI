@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ViewChildren } from '@angular/core';
-
+import {ScrollingModule} from '@angular/cdk/scrolling';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -20,7 +20,8 @@ import {
   MatSelectModule,
   MatListModule,
   MatDialogModule,
-  MatTableModule
+  MatTableModule,
+  MatSliderModule
 } from '@angular/material';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { RegisterComponent } from './components/register/register.component';
@@ -40,6 +41,10 @@ import { DialogCreateCourseComponent } from './components/mentor/dialog-create-c
 import { ListCoursesComponent } from './components/mentor/list-courses/list-courses.component';
 import { ListCoursesStudentComponent } from './components/student/list-courses-student/list-courses-student.component';
 import { MentorNotificationsComponent } from './components/mentor/mentor-notifications/mentor-notifications.component';
+import { OngoingTrainingsMentorComponent } from './components/mentor/ongoing-trainings-mentor/ongoing-trainings-mentor.component';
+import { CompletedTrainingsMentorComponent } from './components/mentor/completed-trainings-mentor/completed-trainings-mentor.component';
+import { OngoingCoursesStudentComponent } from './components/student/ongoing-courses-student/ongoing-courses-student.component';
+import { CompletedCoursesStudentComponent } from './components/student/completed-courses-student/completed-courses-student.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +64,11 @@ import { MentorNotificationsComponent } from './components/mentor/mentor-notific
     DialogCreateCourseComponent,
     ListCoursesComponent,
     ListCoursesStudentComponent,
-    MentorNotificationsComponent
+    MentorNotificationsComponent,
+    OngoingTrainingsMentorComponent,
+    CompletedTrainingsMentorComponent,
+    OngoingCoursesStudentComponent,
+    CompletedCoursesStudentComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +90,9 @@ import { MentorNotificationsComponent } from './components/mentor/mentor-notific
     MatButtonModule,
     MatDialogModule,
     MatTableModule,
+    MatSliderModule,
     FormsModule,
+    ScrollingModule,
     ReactiveFormsModule,
     HttpClientModule
   ],

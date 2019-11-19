@@ -1,0 +1,52 @@
+<!-- list all technologies which are active -->
+<div>
+    <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+    <mat-table #table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="registrationDate">
+            <mat-header-cell *matHeaderCellDef> Registration Date </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.registrationDate}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="completionDate">
+            <mat-header-cell *matHeaderCellDef> Completion Date </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.completionDate}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="progress">
+            <mat-header-cell *matHeaderCellDef> Progress </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <mat-slider thumbLabel tickInterval="1" min="{{element.progress}}" step="25" max="100" disabled>
+                </mat-slider>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="courseName">
+            <mat-header-cell *matHeaderCellDef> Course Name </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.courseName}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="userName">
+            <mat-header-cell *matHeaderCellDef> Student Name </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.userName}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="rating">
+            <mat-header-cell *matHeaderCellDef> User Rating </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <mat-slider thumbLabel tickInterval="1" value="{{element.rating}}" min="0" step="25" max="100" disabled>
+                </mat-slider>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+</div>

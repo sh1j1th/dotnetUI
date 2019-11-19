@@ -15,6 +15,11 @@ import { ListTechnologiesComponent } from './components/mentor/list-technologies
 import { DialogCreateCourseComponent } from './components/mentor/dialog-create-course/dialog-create-course.component';
 import { ListCoursesComponent } from './components/mentor/list-courses/list-courses.component';
 import { ListCoursesStudentComponent } from './components/student/list-courses-student/list-courses-student.component';
+import { OngoingTrainingsMentorComponent } from './components/mentor/ongoing-trainings-mentor/ongoing-trainings-mentor.component';
+import { MentorNotificationsComponent } from './components/mentor/mentor-notifications/mentor-notifications.component';
+import { CompletedTrainingsMentorComponent } from './components/mentor/completed-trainings-mentor/completed-trainings-mentor.component';
+import { OngoingCoursesStudentComponent } from './components/student/ongoing-courses-student/ongoing-courses-student.component';
+import { CompletedCoursesStudentComponent } from './components/student/completed-courses-student/completed-courses-student.component';
 
 
 const routes: Routes = [
@@ -36,7 +41,10 @@ const routes: Routes = [
   },
   { path: 'studentDashboard', component: StudentDashboardComponent,
     children: [
-      {path: 'allCourses', component: ListCoursesStudentComponent}
+      {path: 'allCourses', component: ListCoursesStudentComponent},
+      {path: 'ongoingCourses', component: OngoingCoursesStudentComponent},
+      {path: 'completedCourses', component: CompletedCoursesStudentComponent}
+      
 
     ]
   },
@@ -45,6 +53,9 @@ const routes: Routes = [
       {path: 'allTechnologies', component: ListTechnologiesComponent},
       {path: 'dialogCreateCourse', component: DialogCreateCourseComponent},
       {path: 'myCourses', component: ListCoursesComponent},
+      {path: 'ongoingTrainings', component: OngoingTrainingsMentorComponent},
+      {path: 'mentorNotifications', component: MentorNotificationsComponent},
+      {path: 'completedTrainings', component: CompletedTrainingsMentorComponent}
 
     ]
   }
