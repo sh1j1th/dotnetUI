@@ -1,0 +1,40 @@
+
+    <div>
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+        <mat-table #table [dataSource]="dataSource" class="mat-elevation-z8">
+            <!-- Id Column -->
+            <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+            </ng-container>
+    
+            <!-- Name Column -->
+            <ng-container matColumnDef="courseName">
+                <mat-header-cell *matHeaderCellDef> Course </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.courseName}} </mat-cell>
+            </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="price">
+                <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.price}} </mat-cell>
+            </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="slotId">
+                <mat-header-cell *matHeaderCellDef> Slot Id </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.slotId}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="description">
+                <mat-header-cell *matHeaderCellDef> description </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="technologyId">
+                <mat-header-cell *matHeaderCellDef> Technology Id </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.technologyId}} </mat-cell>
+            </ng-container>
+                        
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+    </div>

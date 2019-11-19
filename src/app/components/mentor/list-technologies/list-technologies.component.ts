@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { MatTableDataSource } from '@angular/material';
+import { DialogCreateCourseComponent } from '../dialog-create-course/dialog-create-course.component';
 
 @Component({
   selector: 'app-list-technologies',
@@ -9,6 +10,8 @@ import { MatTableDataSource } from '@angular/material';
   styleUrls: ['./list-technologies.component.scss']
 })
 export class ListTechnologiesComponent implements OnInit {
+
+  mentorEmail = localStorage.getItem('email'); 
 
   constructor(
     private http: HttpClient,
@@ -18,6 +21,14 @@ export class ListTechnologiesComponent implements OnInit {
   ngOnInit() {
     this.listTechnology();
   }
+
+  showDialog() {
+    const dialogRef = this.dialog.open(DialogCreateCourseComponent, {
+      width: 'auto',
+      height: 'auto'
+    });
+  }
+
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
@@ -42,5 +53,21 @@ export class ListTechnologiesComponent implements OnInit {
       }
     )
   }
+
+  openDialog(technologyId:number): void {
+ 
+      
+   const dialogRef = this.dialog.open(DialogCreateCourseComponent, {
+     width: 'auto',
+     data: { mentorEmail: this.mentorEmail, technologyId: technologyId}
+   });
+   dialogRef.afterClosed().subscribe(result => {
+   });
+
+   const dialogSubmitSubscription =
+     dialogRef.componentInstance.submitClicked.subscribe(result => {
+       dialogSubmitSubscription.unsubscribe();
+     });
+ }
 
 }

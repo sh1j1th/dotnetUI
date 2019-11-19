@@ -13,6 +13,8 @@ import { EditTechDialogComponent } from './components/admin/edit-tech-dialog/edi
 import { MentorDashboardComponent } from './components/mentor/mentor-dashboard/mentor-dashboard.component';
 import { ListTechnologiesComponent } from './components/mentor/list-technologies/list-technologies.component';
 import { DialogCreateCourseComponent } from './components/mentor/dialog-create-course/dialog-create-course.component';
+import { ListCoursesComponent } from './components/mentor/list-courses/list-courses.component';
+import { ListCoursesStudentComponent } from './components/student/list-courses-student/list-courses-student.component';
 
 
 const routes: Routes = [
@@ -34,6 +36,7 @@ const routes: Routes = [
   },
   { path: 'studentDashboard', component: StudentDashboardComponent,
     children: [
+      {path: 'allCourses', component: ListCoursesStudentComponent}
 
     ]
   },
@@ -41,6 +44,7 @@ const routes: Routes = [
     children: [
       {path: 'allTechnologies', component: ListTechnologiesComponent},
       {path: 'dialogCreateCourse', component: DialogCreateCourseComponent},
+      {path: 'myCourses', component: ListCoursesComponent},
 
     ]
   }

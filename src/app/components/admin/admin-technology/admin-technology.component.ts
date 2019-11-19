@@ -42,7 +42,7 @@ export class AdminTechnologyComponent implements OnInit {
     this.http.get("https://localhost:44370/api/admin").subscribe(
       (result: any[]) => {
         this.technologyList = result;
-        this.displayedColumns = Object.keys(this.technologyList[0]).concat(['Actions']);;
+        this.displayedColumns = Object.keys(this.technologyList[0]).concat(['Actions']);
         this.dataSource = new MatTableDataSource(this.technologyList);
 
         console.log("technologyList given below");

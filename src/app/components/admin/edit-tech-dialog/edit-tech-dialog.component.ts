@@ -2,6 +2,7 @@ import { Component, Output, EventEmitter, Inject, OnInit, Type } from '@angular/
 import { MatDialogRef, MAT_DIALOG_DATA, MatTableDataSource } from '@angular/material';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MatFormFieldControl } from '@angular/material';
 
 @Component({
   selector: 'app-edit-tech-dialog',

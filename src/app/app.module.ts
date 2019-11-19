@@ -37,6 +37,9 @@ import { EditTechDialogComponent } from './components/admin/edit-tech-dialog/edi
 import { MentorDashboardComponent } from './components/mentor/mentor-dashboard/mentor-dashboard.component';
 import { ListTechnologiesComponent } from './components/mentor/list-technologies/list-technologies.component';
 import { DialogCreateCourseComponent } from './components/mentor/dialog-create-course/dialog-create-course.component';
+import { ListCoursesComponent } from './components/mentor/list-courses/list-courses.component';
+import { ListCoursesStudentComponent } from './components/student/list-courses-student/list-courses-student.component';
+import { MentorNotificationsComponent } from './components/mentor/mentor-notifications/mentor-notifications.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +56,10 @@ import { DialogCreateCourseComponent } from './components/mentor/dialog-create-c
     EditTechDialogComponent,
     MentorDashboardComponent,
     ListTechnologiesComponent,
-    DialogCreateCourseComponent
+    DialogCreateCourseComponent,
+    ListCoursesComponent,
+    ListCoursesStudentComponent,
+    MentorNotificationsComponent
   ],
   imports: [
     BrowserModule,

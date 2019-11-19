@@ -21,17 +21,17 @@ export class LoginComponent implements OnInit {
   }
   login(userLogin) {
     console.log(userLogin);
+    localStorage.setItem('email', userLogin.email);
     userLogin = JSON.stringify(userLogin);
     console.log(userLogin);
+    
 
     let Headers = new HttpHeaders({ 'Content-Type': 'application/json' })
 
     this.http.post("https://localhost:44370/api/account/login", userLogin,
-      { headers: Headers, responseType: 'json' }).subscribe(
-        (result: any[]) => {
-          
-          localStorage.setItem('token', result.toString());
-                   
+      { headers: Headers, responseType: 'text' }).subscribe(
+        (result) => {
+          localStorage.setItem('token', result);      
         },
         (error) => {
           console.log(error)
