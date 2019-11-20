@@ -27,14 +27,15 @@ export class CompletedTrainingsMentorComponent implements OnInit {
   displayedColumns = [];
   dataSource;
   listCompletedTrainings = function () {
-    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    this.mentorEmail = {"mentorEmail":this.mentorEmail}
-    this.mentorEmail = JSON.stringify(this.mentorEmail);
-    console.log(this.mentorEmail);
-    this.http.post("https://localhost:44370/api/mentor/completedTrainings",this.mentorEmail,
-    { headers: headers, responseType: "text" }).subscribe(
-      (result: any[]) => {
+    // let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    // this.mentorEmail = {"mentorEmail":this.mentorEmail}
+    // this.mentorEmail = JSON.stringify(this.mentorEmail);
+    // console.log(this.mentorEmail);
+    this.http.get("https://localhost:44370/api/mentor/completedTrainings/"+this.mentorEmail,
+    {  responseType: "text" }).subscribe(
+      (result: any) => {
         this.completedTrainings = result;
+        //console.log(JSON.parse(result))
         this.displayedColumns = Object.keys(this.completedTrainings[0]);
         this.dataSource = new MatTableDataSource(this.completedTrainings);
 

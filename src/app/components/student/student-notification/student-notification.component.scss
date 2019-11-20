@@ -5,9 +5,18 @@ table{
 .mat-header-cell{
     width: fit-content;
     text-align: left;
-
 }
 .mat-cell{
     width: fit-content;
     text-align: left;
+    height: fit-content;
+}
+h3{
+    font-size: 20px;
+}
+tbody{
+    display: block;
+    height: 100px;       
+    overflow-y: auto;    
+    overflow-x: hidden;  
 }

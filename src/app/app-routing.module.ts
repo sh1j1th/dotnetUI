@@ -20,6 +20,7 @@ import { MentorNotificationsComponent } from './components/mentor/mentor-notific
 import { CompletedTrainingsMentorComponent } from './components/mentor/completed-trainings-mentor/completed-trainings-mentor.component';
 import { OngoingCoursesStudentComponent } from './components/student/ongoing-courses-student/ongoing-courses-student.component';
 import { CompletedCoursesStudentComponent } from './components/student/completed-courses-student/completed-courses-student.component';
+import { StudentNotificationComponent } from './components/student/student-notification/student-notification.component';
 
 
 const routes: Routes = [
@@ -43,7 +44,8 @@ const routes: Routes = [
     children: [
       {path: 'allCourses', component: ListCoursesStudentComponent},
       {path: 'ongoingCourses', component: OngoingCoursesStudentComponent},
-      {path: 'completedCourses', component: CompletedCoursesStudentComponent}
+      {path: 'completedCourses', component: CompletedCoursesStudentComponent},
+      {path: 'studentNotifications', component: StudentNotificationComponent}
       
 
     ]

@@ -23,12 +23,13 @@ export class MentorNotificationsComponent implements OnInit {
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
+tableData;
   displayedColumns = [];
   dataSource;
   getNotifications = function () {
     this.http.get("https://localhost:44370/api/mentor/mentorNotifications/"+this.mentorEmail).subscribe(
       (result: any[]) => {
+        this.tableData = result;
         this.notificationList = result;
         this.displayedColumns = Object.keys(this.notificationList[0]).concat(['Actions']);;
         this.dataSource = new MatTableDataSource(this.notificationList);

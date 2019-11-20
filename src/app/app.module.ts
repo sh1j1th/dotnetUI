@@ -21,7 +21,8 @@ import {
   MatListModule,
   MatDialogModule,
   MatTableModule,
-  MatSliderModule
+  MatSliderModule,
+  MatGridListModule
 } from '@angular/material';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { RegisterComponent } from './components/register/register.component';
@@ -45,6 +46,8 @@ import { OngoingTrainingsMentorComponent } from './components/mentor/ongoing-tra
 import { CompletedTrainingsMentorComponent } from './components/mentor/completed-trainings-mentor/completed-trainings-mentor.component';
 import { OngoingCoursesStudentComponent } from './components/student/ongoing-courses-student/ongoing-courses-student.component';
 import { CompletedCoursesStudentComponent } from './components/student/completed-courses-student/completed-courses-student.component';
+import { PaymentDialogComponent } from './components/student/payment-dialog/payment-dialog.component';
+import { StudentNotificationComponent } from './components/student/student-notification/student-notification.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +71,9 @@ import { CompletedCoursesStudentComponent } from './components/student/completed
     OngoingTrainingsMentorComponent,
     CompletedTrainingsMentorComponent,
     OngoingCoursesStudentComponent,
-    CompletedCoursesStudentComponent
+    CompletedCoursesStudentComponent,
+    PaymentDialogComponent,
+    StudentNotificationComponent
   ],
   imports: [
     BrowserModule,
@@ -90,6 +95,7 @@ import { CompletedCoursesStudentComponent } from './components/student/completed
     MatButtonModule,
     MatDialogModule,
     MatTableModule,
+    MatGridListModule,
     MatSliderModule,
     FormsModule,
     ScrollingModule,

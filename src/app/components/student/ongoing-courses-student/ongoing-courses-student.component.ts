@@ -24,16 +24,16 @@ export class OngoingCoursesStudentComponent implements OnInit {
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
+  tableData;
   displayedColumns = [];
   dataSource;
   listOngoingCourses = function () {
-    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    this.studentEmail = {"studentEmail":this.studentEmail}
-    this.studentEmail = JSON.stringify(this.studentEmail);
-    this.http.post("https://localhost:44370/api/student/ongoingCourses",this.studentEmail,
-    { headers: headers, responseType: "text" }).subscribe(
+    // let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    // this.studentEmail = {"studentEmail":this.studentEmail}
+    // this.studentEmail = JSON.stringify(this.studentEmail);
+    this.http.get("https://localhost:44370/api/student/ongoingCourses/"+this.studentEmail).subscribe(
       (result: any[]) => {
+        this.tableData = result;
         this.ongoingCourses = result;
         this.displayedColumns = Object.keys(this.ongoingCourses[0]);
         this.dataSource = new MatTableDataSource(this.ongoingCourses);

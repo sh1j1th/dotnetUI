@@ -25,6 +25,7 @@ export class OngoingTrainingsMentorComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  tableData;
   displayedColumns = [];
   dataSource;
   listOngoingTrainings = function () {
@@ -34,15 +35,18 @@ export class OngoingTrainingsMentorComponent implements OnInit {
     // console.log(this.mentorEmail);
 
     this.http.get("https://localhost:44370/api/mentor/ongoingTrainings/"+this.mentorEmail,
-    {responseType: "text" }).subscribe(
+    //{responseType: "text" }
+    ).subscribe(
       (result: any[]) => {
-
+        //result = JSON.parse(result);
+        //console.log(result)
+        this.tableData = result;
         this.ongoingTrainings = result;
-        console.log(this.ongoingTrainings)
-        this.displayedColumns = Object.keys(this.ongoingTrainings[1]);
-        console.log(this.displayedColumns);
+        //console.log(this.ongoingTrainings)
+        this.displayedColumns = Object.keys(this.ongoingTrainings[0]);
+        //console.log(this.displayedColumns);
         this.dataSource = new MatTableDataSource(this.ongoingTrainings);
-        console.log(this.dataSource);
+        //console.log(this.dataSource);
 
       },
       (error) => {

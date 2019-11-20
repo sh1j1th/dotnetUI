@@ -1,5 +1,5 @@
 <!-- list all technologies which are active -->
-<div #emptyTable *ngIf="dataSource.length === 0 ? emptyTable : fullTable">No data to display</div>
+<!-- <div #emptyTable *ngIf="dataSource.length === 0 ? emptyTable : fullTable">No data to display</div>
 <div #fullTable>
 <div>
         <mat-form-field>
@@ -47,4 +47,33 @@
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
             <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
         </mat-table>
-    </div>
+    </div> -->
+
+    <div>
+            <table class="mat-table mat-elevation-z8">
+                <thead>
+                  <tr class="mat-header-row">
+                    <th class="mat-header-cell"> Id </th>
+                    <th class="mat-header-cell"> Registration Date </th>
+                    <th class="mat-header-cell"> Course Name </th>
+                    <th class="mat-header-cell"> Progress(%) </th>
+                    <th class="mat-header-cell"> Mentor Name </th>
+                    <th class="mat-header-cell"> Rating </th>
+                  </tr>
+                  </thead>
+                <tbody>
+                  <tr class="mat-row" *ngFor="let element of tableData">
+                    <td class="mat-cell"> {{element.id}} </td>
+                    <td class="mat-cell"> {{element.registrationDate}} </td>
+                    <td class="mat-cell"> {{element.courseName}} </td>
+                    <td class="mat-cell"><mat-slider thumbLabel tickInterval="1" 
+                        min="{{element.progress}}" step="25" max="100">
+                        </mat-slider> </td>
+                    <td class="mat-cell"> {{element.userName}} </td>
+                    <td class="mat-cell"><mat-slider thumbLabel tickInterval="1" 
+                        value="{{element.rating}}" min="1" step="1" max="5">
+                        </mat-slider> </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
