@@ -28,14 +28,21 @@ export class OngoingTrainingsMentorComponent implements OnInit {
   displayedColumns = [];
   dataSource;
   listOngoingTrainings = function () {
-    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    this.mentorEmail = JSON.stringify(this.mentorEmail);
-    this.http.post("https://localhost:44370/api/mentor/ongoingTrainings",this.mentorEmail,
-    { headers: headers, responseType: "json" }).subscribe(
+    // let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    // this.mentorEmail = {"mentorEmail":this.mentorEmail}
+    // this.mentorEmail = JSON.stringify(this.mentorEmail);
+    // console.log(this.mentorEmail);
+
+    this.http.get("https://localhost:44370/api/mentor/ongoingTrainings/"+this.mentorEmail,
+    {responseType: "text" }).subscribe(
       (result: any[]) => {
+
         this.ongoingTrainings = result;
-        this.displayedColumns = Object.keys(this.ongoingTrainings[0]);
+        console.log(this.ongoingTrainings)
+        this.displayedColumns = Object.keys(this.ongoingTrainings[1]);
+        console.log(this.displayedColumns);
         this.dataSource = new MatTableDataSource(this.ongoingTrainings);
+        console.log(this.dataSource);
 
       },
       (error) => {

@@ -34,10 +34,6 @@ export class ListCoursesComponent implements OnInit {
         this.displayedColumns = Object.keys(this.coursesList[0]);
         this.dataSource = new MatTableDataSource(this.coursesList);
 
-        console.log("coursesList given below");
-        console.log(this.coursesList);
-        console.log("dataSource given below");
-        console.log(this.dataSource)
       },
       (error) => {
         alert("Error occured, check whether Backend is running!");

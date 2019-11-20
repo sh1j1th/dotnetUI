@@ -1,9 +1,11 @@
 <!-- list all technologies which are active -->
-<div>
+<!-- <div #emptyTable *ngIf="dataSource.length === 0 ? emptyTable : fullTable">No data to display</div> -->
+<div #fullTable>
     <mat-form-field>
         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
     </mat-form-field>
-    <mat-table #table [dataSource]="dataSource" class="mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource" 
+        class="mat-elevation-z8">
 
         <ng-container matColumnDef="id">
             <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>

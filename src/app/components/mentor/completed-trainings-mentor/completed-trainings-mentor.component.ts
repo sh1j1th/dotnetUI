@@ -17,7 +17,7 @@ export class CompletedTrainingsMentorComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.listOngoingTrainings();
+    this.listCompletedTrainings();
   }
 
   applyFilter(filterValue: string) {
@@ -26,15 +26,17 @@ export class CompletedTrainingsMentorComponent implements OnInit {
 
   displayedColumns = [];
   dataSource;
-  listOngoingTrainings = function () {
+  listCompletedTrainings = function () {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    this.mentorEmail = {"mentorEmail":this.mentorEmail}
     this.mentorEmail = JSON.stringify(this.mentorEmail);
+    console.log(this.mentorEmail);
     this.http.post("https://localhost:44370/api/mentor/completedTrainings",this.mentorEmail,
-    { headers: headers, responseType: "json" }).subscribe(
+    { headers: headers, responseType: "text" }).subscribe(
       (result: any[]) => {
-        this.ongoingTrainings = result;
-        this.displayedColumns = Object.keys(this.ongoingTrainings[0]);
-        this.dataSource = new MatTableDataSource(this.ongoingTrainings);
+        this.completedTrainings = result;
+        this.displayedColumns = Object.keys(this.completedTrainings[0]);
+        this.dataSource = new MatTableDataSource(this.completedTrainings);
 
       },
       (error) => {

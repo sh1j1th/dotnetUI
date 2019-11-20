@@ -29,9 +29,10 @@ export class OngoingCoursesStudentComponent implements OnInit {
   dataSource;
   listOngoingCourses = function () {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    this.studentEmail = {"studentEmail":this.studentEmail}
     this.studentEmail = JSON.stringify(this.studentEmail);
     this.http.post("https://localhost:44370/api/student/ongoingCourses",this.studentEmail,
-    { headers: headers, responseType: "json" }).subscribe(
+    { headers: headers, responseType: "text" }).subscribe(
       (result: any[]) => {
         this.ongoingCourses = result;
         this.displayedColumns = Object.keys(this.ongoingCourses[0]);

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { MatTableDataSource } from '@angular/material';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-completed-courses-student',
@@ -12,6 +13,7 @@ export class CompletedCoursesStudentComponent implements OnInit {
   studentEmail = localStorage.getItem('email');
 
   constructor(
+    private _router: Router,
     private http: HttpClient,
     public dialog: MatDialog
   ) { }
@@ -28,14 +30,15 @@ export class CompletedCoursesStudentComponent implements OnInit {
   dataSource; 
   listCompletedCourses = function () {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    this.studentEmail = {"studentEmail":this.studentEmail}
     this.studentEmail = JSON.stringify(this.studentEmail);
+    console.log(this.studentEmail);
     this.http.post("https://localhost:44370/api/student/completedCourses", this.studentEmail,
-      { headers: headers, responseType: "json" }).subscribe(
+      { headers: headers, responseType: "text" }).subscribe(
         (result: any[]) => {
           this.completedCourses = result;
           this.displayedColumns = Object.keys(this.completedCourses[0]);
-          this.dataSource = new MatTableDataSource(this.completedCourses);
-
+          this.dataSource = new MatTableDataSource(this.completedCourses);       
         },
         (error) => {
           alert("Error occured, check whether Backend is running!");

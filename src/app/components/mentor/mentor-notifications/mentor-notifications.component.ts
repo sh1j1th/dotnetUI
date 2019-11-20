@@ -20,6 +20,9 @@ export class MentorNotificationsComponent implements OnInit {
   ngOnInit() {
     this.getNotifications();
   }
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 
   displayedColumns = [];
   dataSource;
@@ -29,8 +32,7 @@ export class MentorNotificationsComponent implements OnInit {
         this.notificationList = result;
         this.displayedColumns = Object.keys(this.notificationList[0]).concat(['Actions']);;
         this.dataSource = new MatTableDataSource(this.notificationList);
-        console.log(this.notificationList)
-        console.log(this.displayedColumns)
+
       },
       (error) => {
         alert("Error occured, check whether Backend is running!");
