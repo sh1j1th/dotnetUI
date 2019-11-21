@@ -48,6 +48,8 @@ import { OngoingCoursesStudentComponent } from './components/student/ongoing-cou
 import { CompletedCoursesStudentComponent } from './components/student/completed-courses-student/completed-courses-student.component';
 import { PaymentDialogComponent } from './components/student/payment-dialog/payment-dialog.component';
 import { StudentNotificationComponent } from './components/student/student-notification/student-notification.component';
+import { StudentPaymentsHistoryComponent } from './components/student/student-payments-history/student-payments-history.component';
+import { MentorPaymentsHistoryComponent } from './components/mentor/mentor-payments-history/mentor-payments-history.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +75,9 @@ import { StudentNotificationComponent } from './components/student/student-notif
     OngoingCoursesStudentComponent,
     CompletedCoursesStudentComponent,
     PaymentDialogComponent,
-    StudentNotificationComponent
+    StudentNotificationComponent,
+    StudentPaymentsHistoryComponent,
+    MentorPaymentsHistoryComponent
   ],
   imports: [
     BrowserModule,

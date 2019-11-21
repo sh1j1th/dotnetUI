@@ -22,19 +22,11 @@ export class ListCoursesStudentComponent implements OnInit {
     this.listCourses();
   }
 
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
-  displayedColumns = [];
-  dataSource;
+tableData;
   listCourses = function () {
     this.http.get("https://localhost:44370/api/student/searchCourses").subscribe(
       (result: any[]) => {
-        this.coursesList = result;
-        this.displayedColumns = Object.keys(this.coursesList[0]).concat(['Actions']);;
-        this.dataSource = new MatTableDataSource(this.coursesList);
-
+        this.tableData = result;
       },
       (error) => {
         alert("Error occured, check whether Backend is running!");

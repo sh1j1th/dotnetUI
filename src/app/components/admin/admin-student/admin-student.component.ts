@@ -20,21 +20,23 @@ export class AdminStudentComponent implements OnInit {
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+  tableData;
   displayedColumns = [];
   dataSource;
   listStudents = function () {
     this.http.get("https://localhost:44370/api/admin/users/3").subscribe(
       (result: any[]) => {
-        this.studentList = result;
-        console.log(result);
-        //console.log(JSON.stringify(this.studentList));
-        this.displayedColumns = Object.keys(this.studentList[0]).concat(['Actions']);;
-        this.dataSource = new MatTableDataSource(this.studentList);
-        console.log(this.displayedColumns);
-        console.log("studentList given below");
-        console.log(this.studentList);
-        console.log("dataSource given below");
-        console.log(this.dataSource)
+        this.tableData = result;
+        // this.studentList = result;
+        // console.log(result);
+        // //console.log(JSON.stringify(this.studentList));
+        // this.displayedColumns = Object.keys(this.studentList[0]).concat(['Actions']);;
+        // this.dataSource = new MatTableDataSource(this.studentList);
+        // console.log(this.displayedColumns);
+        // console.log("studentList given below");
+        // console.log(this.studentList);
+        // console.log("dataSource given below");
+        // console.log(this.dataSource)
         
       },
       (error) => {

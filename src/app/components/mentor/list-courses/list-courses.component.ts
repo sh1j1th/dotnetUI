@@ -23,6 +23,7 @@ export class ListCoursesComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  tableData;
   displayedColumns = [];
   dataSource;
   listCourses = function () {
@@ -30,9 +31,7 @@ export class ListCoursesComponent implements OnInit {
     console.log(mentorEmail);
     this.http.get("https://localhost:44370/api/mentor/myCourses/"+mentorEmail).subscribe(
       (result: any[]) => {
-        this.coursesList = result;
-        this.displayedColumns = Object.keys(this.coursesList[0]);
-        this.dataSource = new MatTableDataSource(this.coursesList);
+        this.tableData = result;
 
       },
       (error) => {

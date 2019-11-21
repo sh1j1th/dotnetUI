@@ -22,20 +22,22 @@ export class AdminMentorComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  tableData;
   displayedColumns = [];
   dataSource;
   listMentors = function () {
     this.http.get("https://localhost:44370/api/admin/users/2").subscribe(
       (result: any[]) => {
+        this.tableData = result;
         this.mentorList = result;
         //console.log(JSON.stringify(this.mentorList));
-        this.displayedColumns = Object.keys(this.mentorList[0]).concat(['Actions']);;
-        this.dataSource = new MatTableDataSource(this.mentorList);
+        // this.displayedColumns = Object.keys(this.mentorList[0]).concat(['Actions']);;
+        // this.dataSource = new MatTableDataSource(this.mentorList);
 
-        console.log("mentorList given below");
-        console.log(this.mentorList);
-        console.log("dataSource given below");
-        console.log(this.dataSource)
+        // console.log("mentorList given below");
+        // console.log(this.mentorList);
+        // console.log("dataSource given below");
+        // console.log(this.dataSource)
       },
       (error) => {
         alert("Error occured, check whether Backend is running!");

@@ -44,10 +44,6 @@ export class OngoingCoursesStudentComponent implements OnInit {
     )
   }
   onRatingChange(event: MatSliderChange,id: number,field: string) {
-    console.log("This is emitted as the thumb slides");
-    console.log(event.value);
-    console.log(id)
-    console.log(field)
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     this.http.put("https://localhost:44370/api/student/rating/" + id, event.value,
      { headers: headers, responseType: "text" }).subscribe(

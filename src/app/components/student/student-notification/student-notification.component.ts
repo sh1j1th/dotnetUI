@@ -32,9 +32,7 @@ export class StudentNotificationComponent implements OnInit {
   approveData;
   rejectData;
   approveNotifications = function () {
-    // let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    // this.studentEmail = {"studentEmail":this.studentEmail}
-    // this.studentEmail = JSON.stringify(this.studentEmail);
+
     this.http.get("https://localhost:44370/api/student/approved/"+this.studentEmail).subscribe(
       (result: any[]) => {
         this.approveData = result;
