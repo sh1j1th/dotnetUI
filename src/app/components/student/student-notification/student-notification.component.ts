@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { MatTableDataSource } from '@angular/material';
+import { PaymentDialogComponent } from '../payment-dialog/payment-dialog.component';
 
 
 @Component({
@@ -21,6 +22,12 @@ export class StudentNotificationComponent implements OnInit {
   ngOnInit() {
     this.approveNotifications();
     this.rejectNotifications();
+  }
+  showDialog() {
+    const dialogRef = this.dialog.open(PaymentDialogComponent, {
+      width: 'auto',
+      height: 'auto'
+    });
   }
   approveData;
   rejectData;
@@ -53,6 +60,24 @@ export class StudentNotificationComponent implements OnInit {
       }
     )
   }
+
+  openDialog(registrationId: Number,
+    price: Number,
+    paymentId: Number): void {
+ 
+   const dialogRef = this.dialog.open(PaymentDialogComponent, {
+     width: 'auto',
+     data: { registrationId: registrationId,
+              price: price}
+   });
+   dialogRef.afterClosed().subscribe(result => {
+   });
+
+   const dialogSubmitSubscription =
+     dialogRef.componentInstance.submitClicked.subscribe(result => {
+       dialogSubmitSubscription.unsubscribe();
+     });
+ }
 
 
 }

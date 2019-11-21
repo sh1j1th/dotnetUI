@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSliderChange } from '@angular/material';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { MatTableDataSource } from '@angular/material';
 
@@ -34,6 +34,7 @@ export class OngoingCoursesStudentComponent implements OnInit {
     this.http.get("https://localhost:44370/api/student/ongoingCourses/"+this.studentEmail).subscribe(
       (result: any[]) => {
         this.tableData = result;
+        console.log(result);
         this.ongoingCourses = result;
         this.displayedColumns = Object.keys(this.ongoingCourses[0]);
         this.dataSource = new MatTableDataSource(this.ongoingCourses);
@@ -44,6 +45,10 @@ export class OngoingCoursesStudentComponent implements OnInit {
         console.log(error)
       }
     )
+  }
+  onInputChange(event: MatSliderChange) {
+    console.log("This is emitted as the thumb slides");
+    console.log(event.value);
   }
 
 }

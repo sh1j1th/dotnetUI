@@ -21,6 +21,7 @@ import { CompletedTrainingsMentorComponent } from './components/mentor/completed
 import { OngoingCoursesStudentComponent } from './components/student/ongoing-courses-student/ongoing-courses-student.component';
 import { CompletedCoursesStudentComponent } from './components/student/completed-courses-student/completed-courses-student.component';
 import { StudentNotificationComponent } from './components/student/student-notification/student-notification.component';
+import { PaymentDialogComponent } from './components/student/payment-dialog/payment-dialog.component';
 
 
 const routes: Routes = [
@@ -45,7 +46,8 @@ const routes: Routes = [
       {path: 'allCourses', component: ListCoursesStudentComponent},
       {path: 'ongoingCourses', component: OngoingCoursesStudentComponent},
       {path: 'completedCourses', component: CompletedCoursesStudentComponent},
-      {path: 'studentNotifications', component: StudentNotificationComponent}
+      {path: 'studentNotifications', component: StudentNotificationComponent},
+      {path: 'paymentDialog', component: PaymentDialogComponent}
       
 
     ]

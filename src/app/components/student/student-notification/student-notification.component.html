@@ -15,7 +15,8 @@
                             for<strong> {{element.slot}} </strong>
                             slot has been accepted by<strong> {{element.mentorName}}</strong>. Happy Learning!!
                         </td>
-                        <td class="mat-cell"> <button mat-raised-button color="primary">Pay</button>
+                        <td class="mat-cell"> <button mat-raised-button color="primary"
+                            (click)="openDialog(element.registrationId,element.price)">Pay</button>
                         </td>
                     </tr>
                 </tbody>
