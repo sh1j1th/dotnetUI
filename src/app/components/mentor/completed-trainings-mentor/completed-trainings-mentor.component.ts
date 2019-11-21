@@ -23,7 +23,7 @@ export class CompletedTrainingsMentorComponent implements OnInit {
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
+tableData;
   displayedColumns = [];
   dataSource;
   listCompletedTrainings = function () {
@@ -34,6 +34,7 @@ export class CompletedTrainingsMentorComponent implements OnInit {
     this.http.get("https://localhost:44370/api/mentor/completedTrainings/"+this.mentorEmail,
     {  responseType: "text" }).subscribe(
       (result: any) => {
+        this.tableData = JSON.parse(result);
         this.completedTrainings = result;
         //console.log(JSON.parse(result))
         this.displayedColumns = Object.keys(this.completedTrainings[0]);

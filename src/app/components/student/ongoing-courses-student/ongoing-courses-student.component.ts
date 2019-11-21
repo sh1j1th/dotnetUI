@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatSliderChange } from '@angular/material';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { MatTableDataSource } from '@angular/material';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ongoing-courses-student',
@@ -13,6 +14,7 @@ export class OngoingCoursesStudentComponent implements OnInit {
   studentEmail = localStorage.getItem('email');
 
   constructor(
+    private _router: Router,
     private http: HttpClient,
     public dialog: MatDialog
   ) { }
@@ -21,12 +23,9 @@ export class OngoingCoursesStudentComponent implements OnInit {
     this.listOngoingCourses();
   }
 
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
+ 
   tableData;
-  displayedColumns = [];
-  dataSource;
+
   listOngoingCourses = function () {
     // let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     // this.studentEmail = {"studentEmail":this.studentEmail}
@@ -35,9 +34,7 @@ export class OngoingCoursesStudentComponent implements OnInit {
       (result: any[]) => {
         this.tableData = result;
         console.log(result);
-        this.ongoingCourses = result;
-        this.displayedColumns = Object.keys(this.ongoingCourses[0]);
-        this.dataSource = new MatTableDataSource(this.ongoingCourses);
+        
 
       },
       (error) => {
@@ -46,9 +43,47 @@ export class OngoingCoursesStudentComponent implements OnInit {
       }
     )
   }
-  onInputChange(event: MatSliderChange) {
+  onRatingChange(event: MatSliderChange,id: number,field: string) {
     console.log("This is emitted as the thumb slides");
     console.log(event.value);
+    console.log(id)
+    console.log(field)
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    this.http.put("https://localhost:44370/api/student/rating/" + id, event.value,
+     { headers: headers, responseType: "text" }).subscribe(
+      (result) => {
+        console.log("new rating");
+        this._router.navigateByUrl('studentDashboard', { skipLocationChange: true }).then(() => {
+          this._router.navigate(['studentDashboard/ongoingCourses']);
+        });
+      },
+      (error) => {
+        alert("Error occured");
+        console.log(error)
+      }
+    )
   }
+
+  onProgressChange(event: MatSliderChange,id: number, field: string) {
+    console.log("This is emitted as the thumb slides");
+    console.log(event.value);
+    console.log(id)
+    console.log(field);
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    this.http.put("https://localhost:44370/api/student/progress/" + id, event.value,
+     { headers: headers, responseType: "text" }).subscribe(
+      (result) => {
+        console.log("new rating");
+        this._router.navigateByUrl('studentDashboard', { skipLocationChange: true }).then(() => {
+          this._router.navigate(['studentDashboard/ongoingCourses']);
+        });
+      },
+      (error) => {
+        alert("Error occured");
+        console.log(error)
+      }
+    )
+  }
+  
 
 }

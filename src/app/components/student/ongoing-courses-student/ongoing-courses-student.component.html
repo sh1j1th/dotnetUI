@@ -68,18 +68,17 @@
                 <td class="mat-cell"> {{element.courseName}} </td>
                 <td class="mat-cell">
                     <mat-slider thumbLabel tickInterval="1" min="{{element.progress}}" step="25" max="100"
-                        [(ngModel)]="progress" name="progress"
-                        (input)="onInputChange($event)">
+                        (input)="onProgressChange($event,element.id,'progress')"  id="progress">
+                        
                     </mat-slider>
                 </td>
                 <td class="mat-cell"> {{element.userName}} </td>
                 <td class="mat-cell">
                     <mat-slider thumbLabel tickInterval="1" value="{{element.rating}}" min="1" step="1" max="5"
-                        [(ngModel)]="rating" name="rating"
-                        (input)="onInputChange($event)">
+                    (input)="onRatingChange($event,element.id,'rating')" id="rating">
                     </mat-slider>
                 </td>
-                <td class="mat-cell"> <a mat-raised-button color="primary">Save</a> </td>
+                
             </tr>
         </tbody>
     </table>

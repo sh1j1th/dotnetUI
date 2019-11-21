@@ -20,20 +20,16 @@ export class MentorNotificationsComponent implements OnInit {
   ngOnInit() {
     this.getNotifications();
   }
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
+  
 tableData;
-  displayedColumns = [];
-  dataSource;
+
   getNotifications = function () {
     this.http.get("https://localhost:44370/api/mentor/mentorNotifications/"+this.mentorEmail).subscribe(
       (result: any[]) => {
         this.tableData = result;
+        console.log(this.tableData)
         this.notificationList = result;
-        this.displayedColumns = Object.keys(this.notificationList[0]).concat(['Actions']);;
-        this.dataSource = new MatTableDataSource(this.notificationList);
-
+        
       },
       (error) => {
         alert("Error occured, check whether Backend is running!");
