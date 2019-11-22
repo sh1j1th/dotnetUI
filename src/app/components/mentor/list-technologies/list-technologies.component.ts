@@ -36,7 +36,8 @@ export class ListTechnologiesComponent implements OnInit {
   displayedColumns = [];
   dataSource;
   listTechnology = function () {
-    this.http.get("https://localhost:44370/api/mentor/listTech").subscribe(
+    this.http.get("https://localhost:44370/api/mentor/listTech",
+    {Authorization: 'Bearer ' + localStorage.getItem('token')}).subscribe(
       (result: any[]) => {
         this.technologyList = result;
         this.displayedColumns = Object.keys(this.technologyList[0]).concat(['Actions']);;

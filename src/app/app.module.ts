@@ -28,7 +28,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StudentDashboardComponent } from './components/student/student-dashboard/student-dashboard.component';
 import { AdminDashboardComponent } from './components/admin/admin-dashboard/admin-dashboard.component';
 import { AdminTechnologyComponent } from './components/admin/admin-technology/admin-technology.component';
@@ -50,6 +50,7 @@ import { PaymentDialogComponent } from './components/student/payment-dialog/paym
 import { StudentNotificationComponent } from './components/student/student-notification/student-notification.component';
 import { StudentPaymentsHistoryComponent } from './components/student/student-payments-history/student-payments-history.component';
 import { MentorPaymentsHistoryComponent } from './components/mentor/mentor-payments-history/mentor-payments-history.component';
+import { TokenAuthInterceptorService } from './services/token-auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -106,7 +107,9 @@ import { MentorPaymentsHistoryComponent } from './components/mentor/mentor-payme
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TokenAuthInterceptorService, multi: true }
+  ],
   bootstrap: [AppComponent],
   entryComponents: [EditTechDialogComponent]
 })
