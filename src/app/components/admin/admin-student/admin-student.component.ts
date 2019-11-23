@@ -24,7 +24,7 @@ export class AdminStudentComponent implements OnInit {
   displayedColumns = [];
   dataSource;
   listStudents = function () {
-    this.http.get("https://localhost:44370/api/admin/users/3").subscribe(
+    this.http.get("https://localhost:44319/adminservice/users/3").subscribe(
       (result: any[]) => {
         this.tableData = result;
         // this.studentList = result;

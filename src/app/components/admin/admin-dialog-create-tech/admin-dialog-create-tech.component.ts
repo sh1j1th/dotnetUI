@@ -26,7 +26,7 @@ export class AdminDialogCreateTechComponent implements OnInit {
     console.log(cForm);
     let Headers = new HttpHeaders({ 'Content-Type': 'application/json' })
 
-    this.http.post("https://localhost:44370/api/admin", cForm,
+    this.http.post("https://localhost:44319/adminservice", cForm,
       { headers: Headers, responseType: 'text' }).subscribe(
         (result) => {
           console.log(result)

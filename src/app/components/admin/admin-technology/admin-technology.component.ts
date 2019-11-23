@@ -39,7 +39,7 @@ export class AdminTechnologyComponent implements OnInit {
   displayedColumns = [];
   dataSource;
   listTechnology = function () {
-    this.http.get("https://localhost:44370/api/admin").subscribe(
+    this.http.get("https://localhost:44319/adminservice").subscribe(
       (result: any[]) => {
         this.technologyList = result;
         this.displayedColumns = Object.keys(this.technologyList[0]).concat(['Actions']);

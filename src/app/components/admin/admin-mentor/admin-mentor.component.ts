@@ -26,7 +26,7 @@ export class AdminMentorComponent implements OnInit {
   displayedColumns = [];
   dataSource;
   listMentors = function () {
-    this.http.get("https://localhost:44370/api/admin/users/2").subscribe(
+    this.http.get("https://localhost:44319/adminservice/users/2").subscribe(
       (result: any[]) => {
         this.tableData = result;
         this.mentorList = result;
