@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { MatTableDataSource } from '@angular/material';
+import { empty } from 'rxjs';
 
 @Component({
   selector: 'app-ongoing-trainings-mentor',
@@ -21,32 +22,29 @@ export class OngoingTrainingsMentorComponent implements OnInit {
     this.listOngoingTrainings();
   }
 
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
+  // applyFilter(filterValue: string) {
+  //   this.dataSource.filter = filterValue.trim().toLowerCase();
+  // }
 
   tableData;
-  displayedColumns = [];
-  dataSource;
+show = false;
   listOngoingTrainings = function () {
     // let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     // this.mentorEmail = {"mentorEmail":this.mentorEmail}
     // this.mentorEmail = JSON.stringify(this.mentorEmail);
     // console.log(this.mentorEmail);
 
-    this.http.get("https://localhost:44370/api/mentor/ongoingTrainings/"+this.mentorEmail,
+    this.http.get("https://localhost:44319/mentorservice/ongoingTrainings/"+this.mentorEmail,
     //{responseType: "text" }
     ).subscribe(
       (result: any[]) => {
         //result = JSON.parse(result);
         //console.log(result)
         this.tableData = result;
-        this.ongoingTrainings = result;
-        //console.log(this.ongoingTrainings)
-        this.displayedColumns = Object.keys(this.ongoingTrainings[0]);
-        //console.log(this.displayedColumns);
-        this.dataSource = new MatTableDataSource(this.ongoingTrainings);
-        //console.log(this.dataSource);
+        if(this.tableData === empty)
+          this.show = false;
+        else
+        this.show = true
 
       },
       (error) => {

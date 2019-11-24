@@ -29,24 +29,13 @@ export class ListTechnologiesComponent implements OnInit {
     });
   }
 
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
+tableData;
 
-  displayedColumns = [];
-  dataSource;
   listTechnology = function () {
-    this.http.get("https://localhost:44370/api/mentor/listTech",
+    this.http.get("https://localhost:44319/mentorservice/listTech",
     {Authorization: 'Bearer ' + localStorage.getItem('token')}).subscribe(
       (result: any[]) => {
-        this.technologyList = result;
-        this.displayedColumns = Object.keys(this.technologyList[0]).concat(['Actions']);;
-        this.dataSource = new MatTableDataSource(this.technologyList);
-
-        console.log("technologyList given below");
-        console.log(this.technologyList);
-        console.log("dataSource given below");
-        console.log(this.dataSource)
+        this.tableData = result;
       },
       (error) => {
         alert("Error occured, check whether Backend is running!");

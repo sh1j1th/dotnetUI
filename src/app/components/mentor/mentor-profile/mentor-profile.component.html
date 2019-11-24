@@ -1,11 +1,11 @@
-<h2 mat-dialog-title>Create a course</h2>
+<h2 mat-dialog-title>My profile</h2>
 <mat-dialog-content>
   <form #editForm="ngForm" (ngSubmit)="createCourse(editForm.value)" class="form">
     
       <mat-form-field>
-          <mat-label>Mentor Details</mat-label>
-          <input matInput placeholder="Mentor Email" [(ngModel)]="mentorEmail" name="mentorEmail" 
-           readonly>
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Name" [(ngModel)]="name" name="mentorEmail" 
+           readonly hidden>
       </mat-form-field>
 
       <mat-form-field>
@@ -26,8 +26,7 @@
  
         <mat-form-field>
           <mat-label>Price</mat-label>
-          <input matInput type="number" placeholder="Price (INR)" [(ngModel)]="price" name="price"
-          min="0" required>
+          <input matInput type="number" placeholder="Price (INR)" [(ngModel)]="price" name="price" required>
           <mat-error ng-show="createCourse.price.$touched && createCourse.price.$invalid">Field is required
           </mat-error>
         </mat-form-field>

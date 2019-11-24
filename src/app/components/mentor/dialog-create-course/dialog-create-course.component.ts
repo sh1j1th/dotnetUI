@@ -32,7 +32,7 @@ export class DialogCreateCourseComponent implements OnInit {
     console.log(createForm)
 
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    this.http.post("https://localhost:44370/api/mentor/createCourse", createForm,
+    this.http.post("https://localhost:44319/mentorservice/createCourse", createForm,
      { headers: headers, responseType: "text" }).subscribe(
       (result) => {
 

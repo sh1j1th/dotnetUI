@@ -19,15 +19,18 @@
 
     <mat-form-field>
       <mat-label>Commission</mat-label>
-      <input matInput placeholder="commission in %" [(ngModel)]="commission" name="commission" required>
+      <input matInput placeholder="Commission in %" [(ngModel)]="commission"
+       name="commission" required min="0" max="100" oninput="validity.valid||(value='');">
       <mat-error ng-show="createTech.commission.$touched && createTech.commission.$invalid">Field is required
       </mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Image URL</mat-label>
-      <input matInput placeholder="imageURL" [(ngModel)]="imageURL" name="imageURL" required>
-      <mat-error ng-show="createTech.imageURL.$touched && createTech.imageURL.$invalid">Field is required</mat-error>
+      <input type="url" matInput placeholder="imageURL"
+       [(ngModel)]="imageURL" name="imageURL" required>
+      <mat-error ng-show="createTech.imageURL.$touched && 
+      createTech.imageURL.$invalid">Field is required</mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Description</mat-label>

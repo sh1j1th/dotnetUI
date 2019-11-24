@@ -51,6 +51,10 @@ import { StudentNotificationComponent } from './components/student/student-notif
 import { StudentPaymentsHistoryComponent } from './components/student/student-payments-history/student-payments-history.component';
 import { MentorPaymentsHistoryComponent } from './components/mentor/mentor-payments-history/mentor-payments-history.component';
 import { TokenAuthInterceptorService } from './services/token-auth-interceptor.service';
+import { MentorProfileComponent } from './components/mentor/mentor-profile/mentor-profile.component';
+import { StudentProfileComponent } from './components/student/student-profile/student-profile.component';
+import { AuthGuardService } from './auth/auth-guard.service';
+import { AuthService } from './auth/auth.service';
 
 @NgModule({
   declarations: [
@@ -78,7 +82,9 @@ import { TokenAuthInterceptorService } from './services/token-auth-interceptor.s
     PaymentDialogComponent,
     StudentNotificationComponent,
     StudentPaymentsHistoryComponent,
-    MentorPaymentsHistoryComponent
+    MentorPaymentsHistoryComponent,
+    MentorProfileComponent,
+    StudentProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -108,9 +114,12 @@ import { TokenAuthInterceptorService } from './services/token-auth-interceptor.s
     HttpClientModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: TokenAuthInterceptorService, multi: true }
+    AuthService,
+    { provide: HTTP_INTERCEPTORS, useClass: TokenAuthInterceptorService, multi: true },
+    AuthGuardService
   ],
   bootstrap: [AppComponent],
   entryComponents: [EditTechDialogComponent]
 })
 export class AppModule { }
+

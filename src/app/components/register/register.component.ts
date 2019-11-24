@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
+import {FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -19,6 +20,11 @@ export class RegisterComponent implements OnInit {
  
   ngOnInit() { 
   }
+  emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
+
 
   //register 
   register(userReg){
@@ -44,5 +50,6 @@ export class RegisterComponent implements OnInit {
           }
         )
   }
-
 }
+
+

@@ -16,12 +16,14 @@
             <mat-form-field>
                 <mat-label>First Name</mat-label>
                 <input matInput placeholder="First name" [(ngModel)]="firstName" name="firstName" required>
-                <mat-error ng-show="regForm.firstName.$touched && regForm.firstName.$invalid">Field is required</mat-error>
+                <mat-error ng-show="regForm.firstName.$touched && regForm.firstName.$invalid">Field is required
+                </mat-error>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Last Name</mat-label>
                 <input matInput placeholder="Last Name" [(ngModel)]="lastName" name="lastName" required>
-                <mat-error ng-show="regForm.lastName.$touched && regForm.lastName.$invalid">Field is required</mat-error>
+                <mat-error ng-show="regForm.lastName.$touched && regForm.lastName.$invalid">Field is required
+                </mat-error>
             </mat-form-field>
             <!-- <mat-form-field>
                 <mat-label>Date of Birth</mat-label>
@@ -32,26 +34,36 @@
             </mat-form-field> -->
             <mat-form-field>
                 <mat-label>Email</mat-label>
-                <input matInput placeholder="Email" [(ngModel)]="email" name="email" required>
-                <mat-error ng-show="regForm.email.$touched && regForm.email.$invalid">Field is required</mat-error>
+                <input matInput placeholder="Email" [(ngModel)]="email" name="email" required
+                    [formControl]="emailFormControl">
+                <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                    Please enter a valid email address
+                </mat-error>
+
+                <!-- <mat-error ng-show="regForm.email.$touched && regForm.email.$invalid">Field is required</mat-error> -->
+
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Phone Number</mat-label>
                 <mat-hint>Enter 10 digits only</mat-hint>
-                <input matInput placeholder="Phone Number" [(ngModel)]="phoneNumber" name="phoneNumber" required
-                minlength="10" maxlength="10">
-                <mat-error ng-message="regForm.phoneNumber.$touched">Field is required</mat-error>
-                <mat-error ng-message="regForm.phoneNumber.$invalid">Field is required</mat-error>
+                <input type="number" matInput placeholder="Phone Number" pattern="^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$"
+                [(ngModel)]="phoneNumber" name="phoneNumber" required
+                    minlength="10" max="10000000000" oninput="validity.valid|| (value='');">
+                <!-- <mat-error 
+ ng-show="regForm.phoneNumber.$touched && regForm.phoneNumber.$invalid" 
+                >Field is required
+                </mat-error> -->
                 <!-- https://www.reddit.com/r/Angular2/comments/9tapqk/toggling_error_messages_using_material_materror/ -->
-                
+
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Password</mat-label>
                 <mat-hint>Minimum 8 characters</mat-hint>
                 <input matInput type="password" placeholder="Password" [(ngModel)]="password" name="password" required
-                minlength="6">
-                <mat-error ng-show="regForm.password.$touched && regForm.password.$invalid">Field is required</mat-error>
-                
+                    minlength="6">
+                <mat-error ng-show="regForm.password.$touched && regForm.password.$invalid">Field is required
+                </mat-error>
+
             </mat-form-field>
 
             <mat-card-actions>

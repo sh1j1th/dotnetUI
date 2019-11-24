@@ -7,11 +7,13 @@
             <a mat-button [routerLink]="'/contacts'"> Contacts </a>       
         </div>
         <div>
-            <a mat-button [routerLink]="'/login'"> Login </a>
-            <a mat-button [routerLink]="'/register'"> Register </a>
-            <a mat-button [routerLink]="'/adminDashboard'"> Admin </a>
-            <a mat-button [routerLink]="'/studentDashboard'"> Student </a>
-            <a mat-button [routerLink]="'/mentorDashboard'"> Mentor </a>
+            <a mat-button *ngIf="!authService.isAuthenticated()" [routerLink]="'/login'"> Login </a>
+            <a mat-button *ngIf="!authService.isAuthenticated()" [routerLink]="'/register'"> Register </a>
+            <!-- <a mat-button *ngIf="!authService.isAuthenticated()" [routerLink]="'/adminDashboard'"> Admin </a>
+            <a mat-button *ngIf="!authService.isAuthenticated()" [routerLink]="'/studentDashboard'"> Student </a>
+            <a mat-button *ngIf="!authService.isAuthenticated()" [routerLink]="'/mentorDashboard'"> Mentor </a> -->
+            <a mat-button *ngIf="authService.isAuthenticated()" (click)="authService.logoutUser()"
+            [routerLink]="'/login'"> Logout </a>
         </div>
     </mat-toolbar-row>
 </mat-toolbar> 

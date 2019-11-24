@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { getMatIconFailedToSanitizeLiteralError } from '@angular/material';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  email:string[];
+  email: string[];
 
   constructor(
     private http: HttpClient,
@@ -28,11 +29,35 @@ export class LoginComponent implements OnInit {
         (result) => {
           localStorage.setItem('token', result);
           localStorage.setItem('email', userLogin.email);
-          userLogin = JSON.stringify(userLogin);      
+          userLogin = JSON.stringify(userLogin);
+          result = JSON.parse(result)
+          if (result['role'] == 1)
+          this._router.navigateByUrl('adminDashboard', { skipLocationChange: true }).then(() => {
+            this._router.navigate(['adminDashboard/technologyCRUD']);});
+          if (result['role'] == 2)
+            this._router.navigateByUrl('mentorDashboard', { skipLocationChange: true }).then(() => {
+              this._router.navigate(['mentorDashboard/allTechnologies']);
+            });
+          if (result['role'] == 3)
+            this._router.navigateByUrl('studentDashboard', { skipLocationChange: true }).then(() => {
+              this._router.navigate(['studentDashboard/allCourses']);
+            });
+
         },
         (error) => {
-          console.log(error)
-          alert("Error occured, check whether Backend is running!");
+          switch(error.status){
+            case 400: alert("Invalid credentials");
+            break;
+            case 401: alert("Unauthorized access, contact support");
+            break;
+            case 404: alert("Page not found, redirecting to home");
+            break;
+            case 500: alert("Internal server error, retry after sometime");
+            break;
+            case 502: alert("Bad Gateway");
+            break;
+          }
+
         }
       )
   }
