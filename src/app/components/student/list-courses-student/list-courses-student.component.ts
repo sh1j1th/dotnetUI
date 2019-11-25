@@ -24,7 +24,7 @@ export class ListCoursesStudentComponent implements OnInit {
 
   tableData;
   listCourses = function () {
-    this.http.get("https://localhost:44319/studentservice/searchCourses").subscribe(
+    this.http.get("https://localhost:9075/studentservice/searchCourses").subscribe(
       (result: any[]) => {
         this.tableData = result;
       },

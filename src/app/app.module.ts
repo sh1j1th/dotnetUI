@@ -55,6 +55,7 @@ import { MentorProfileComponent } from './components/mentor/mentor-profile/mento
 import { StudentProfileComponent } from './components/student/student-profile/student-profile.component';
 import { AuthGuardService } from './auth/auth-guard.service';
 import { AuthService } from './auth/auth.service';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { AuthService } from './auth/auth.service';
     StudentPaymentsHistoryComponent,
     MentorPaymentsHistoryComponent,
     MentorProfileComponent,
-    StudentProfileComponent
+    StudentProfileComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
