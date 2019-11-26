@@ -28,13 +28,14 @@ export class RegisterComponent implements OnInit {
 
   //register 
   register(userReg){
-    console.log(userReg);
+    console.log(userReg.phoneNumber);
+    userReg.phoneNumber = userReg.phoneNumber.toString();
     userReg = JSON.stringify(userReg);
     console.log(userReg);
 
     let Headers = new HttpHeaders({ 'Content-Type': 'application/json'})
 
-      this.http.post("https://localhost:9075/authservice/register", userReg,
+      this.http.post("https://localhost:44319/authservice/register", userReg,
         { headers: Headers, responseType: 'text' }).subscribe(
           (result) => {
             console.log(result)
@@ -45,8 +46,18 @@ export class RegisterComponent implements OnInit {
             });
           },
           (error) => {
-            console.log(error)
-            alert("Error occured, check whether Backend is running!");
+            switch(error.status){
+              case 400: alert("Invalid input");
+              break;
+              case 401: alert("Unauthorized access, contact support");
+              break;
+              case 404: alert("Page not found, redirecting to home");
+              break;
+              case 500: alert("Internal server error, retry after sometime");
+              break;
+              case 502: alert("Bad Gateway");
+              break;
+            }
           }
         )
   }

@@ -7,7 +7,12 @@ h1{
 .mat-raised-button:hover{
     opacity: 80%;
 }
-
+mat-header-cell{
+    text-transform: uppercase;
+}
+mat-row:nth-child(even){
+    background-color:lightslategrey;
+    }
 .dialog{
     width: 100%;
     display: flex;
@@ -15,9 +20,3 @@ h1{
     justify-content: center;
     margin-top: 40px;
     }
-    mat-header-cell{
-        text-transform: uppercase;
-    }
-    mat-row:nth-child(even){
-        background-color:lightslategrey;
-        }

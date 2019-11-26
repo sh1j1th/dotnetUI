@@ -24,13 +24,23 @@ export class ListCoursesStudentComponent implements OnInit {
 
   tableData;
   listCourses = function () {
-    this.http.get("https://localhost:9075/studentservice/searchCourses").subscribe(
+    this.http.get("https://localhost:44319/studentservice/searchCourses").subscribe(
       (result: any[]) => {
         this.tableData = result;
       },
       (error) => {
-        alert("Error occured, check whether Backend is running!");
-        console.log(error)
+        switch(error.status){
+          case 400: alert("Invalid input");
+          break;
+          case 401: alert("Unauthorized access, contact support");
+          break;
+          case 404: alert("Page not found, redirecting to home");
+          break;
+          case 500: alert("Internal server error, retry after sometime");
+          break;
+          case 502: alert("Bad Gateway");
+          break;
+        }
       }
     )
   }
@@ -51,11 +61,21 @@ export class ListCoursesStudentComponent implements OnInit {
     this.http.post("https://localhost:44319/studentservice/requestCourse", requestForm,
       { headers: headers, responseType: 'text' }).subscribe(
         (result) => {
-          console.log("Request successfull");
+          alert("Request successfull");
         },
         (error) => {
-          alert("Error occured, check whether Backend is running!");
-          console.log(error)
+          switch(error.status){
+            case 400: alert("Invalid input");
+            break;
+            case 401: alert("Unauthorized access, contact support");
+            break;
+            case 404: alert("Page not found, redirecting to home");
+            break;
+            case 500: alert("Internal server error, retry after sometime");
+            break;
+            case 502: alert("Bad Gateway");
+            break;
+          }
         }
       )
   }

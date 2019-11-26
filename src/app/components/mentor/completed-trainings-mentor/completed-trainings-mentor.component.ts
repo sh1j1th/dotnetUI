@@ -31,7 +31,7 @@ tableData;
     // this.mentorEmail = {"mentorEmail":this.mentorEmail}
     // this.mentorEmail = JSON.stringify(this.mentorEmail);
     // console.log(this.mentorEmail);
-    this.http.get("https://localhost:9075/mentorservice/completedTrainings/"+this.mentorEmail,
+    this.http.get("https://localhost:44319/mentorservice/completedTrainings/"+this.mentorEmail,
     {  responseType: "text" }).subscribe(
       (result: any) => {
         this.tableData = JSON.parse(result);
@@ -42,8 +42,18 @@ tableData;
 
       },
       (error) => {
-        alert("Error occured, check whether Backend is running!");
-        console.log(error)
+        switch(error.status){
+          case 400: alert("Invalid credentials");
+          break;
+          case 401: alert("Unauthorized access, contact support");
+          break;
+          case 404: alert("Page not found, redirecting to home");
+          break;
+          case 500: alert("Internal server error, retry after sometime");
+          break;
+          case 502: alert("Bad Gateway");
+          break;
+        }
       }
     )
   }

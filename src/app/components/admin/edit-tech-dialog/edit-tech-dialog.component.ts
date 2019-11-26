@@ -41,7 +41,7 @@ export class EditTechDialogComponent implements OnInit {
     editForm = JSON.stringify(editForm);
     console.log(editForm)
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    this.http.put("https://localhost:9075/adminservice/" + this.id, editForm, { headers: headers, responseType: "text" }).subscribe(
+    this.http.put("https://localhost:44319/adminservice/" + this.id, editForm, { headers: headers, responseType: "text" }).subscribe(
       (result) => {
 
         console.log(result);
@@ -51,8 +51,18 @@ export class EditTechDialogComponent implements OnInit {
         });
       },
       (error) => {
-        alert("Error occured");
-        console.log(error)
+        switch(error.status){
+          case 400: alert("Invalid credentials");
+          break;
+          case 401: alert("Unauthorized access, contact support");
+          break;
+          case 404: alert("Page not found, redirecting to home");
+          break;
+          case 500: alert("Internal server error, retry after sometime");
+          break;
+          case 502: alert("Bad Gateway");
+          break;
+        }
       }
     )
   }

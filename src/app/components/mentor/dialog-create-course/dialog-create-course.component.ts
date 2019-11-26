@@ -32,7 +32,7 @@ export class DialogCreateCourseComponent implements OnInit {
     console.log(createForm)
 
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    this.http.post("https://localhost:9075/mentorservice/createCourse", createForm,
+    this.http.post("https://localhost:44319/mentorservice/createCourse", createForm,
      { headers: headers, responseType: "text" }).subscribe(
       (result) => {
 
@@ -43,8 +43,18 @@ export class DialogCreateCourseComponent implements OnInit {
         });
       },
       (error) => {
-        alert("Error occured");
-        console.log(error)
+        switch(error.status){
+          case 400: alert("Invalid credentials");
+          break;
+          case 401: alert("Unauthorized access, contact support");
+          break;
+          case 404: alert("Page not found, redirecting to home");
+          break;
+          case 500: alert("Internal server error, retry after sometime");
+          break;
+          case 502: alert("Bad Gateway");
+          break;
+        }
       }
     )
   }

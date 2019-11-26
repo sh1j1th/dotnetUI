@@ -7,7 +7,7 @@
         <form #regForm="ngForm" (ngSubmit)="register(regForm.value)" class="form">
             <mat-form-field>
                 <mat-select placeholder="I'm a" [(ngModel)]="roleId" name="roleId" required>
-                    <mat-option value="1">Admin</mat-option>
+                    <mat-option value="1" disabled>Admin</mat-option>
                     <mat-option value="2">Mentor</mat-option>
                     <mat-option value="3">Student</mat-option>
                 </mat-select>
@@ -35,12 +35,11 @@
             <mat-form-field>
                 <mat-label>Email</mat-label>
                 <input matInput placeholder="Email" [(ngModel)]="email" name="email" required
-                    [formControl]="emailFormControl">
-                <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-                    Please enter a valid email address
-                </mat-error>
+                    >
+                    <mat-error ng-show="regForm.email.$touched && regForm.email.$invalid">Field is required</mat-error>
 
-                <!-- <mat-error ng-show="regForm.email.$touched && regForm.email.$invalid">Field is required</mat-error> -->
+
+                <!--  -->
 
             </mat-form-field>
             <mat-form-field>
